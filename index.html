@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Pathfinder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Student Pathfinder</h1>
+        <div class="auth-buttons">
+            <button onclick="openPopup('login-popup')">Login</button>
+            <button onclick="openPopup('signup-popup')">Sign Up</button>
+        </div>
+    </header>
+    
+    <main>
+        <section class="welcome">
+            <div class="welcome-overlay">
+                <h2>Welcome to Student Pathfinder</h2>
+                <p>Find the best university that matches your dreams and goals!</p>
+            </div>
+        </section>
+        
+        <section class="about-us-container">
+            <div class="about-us">
+                <h2>About Us</h2>
+                <p>Student Pathfinder is dedicated to helping students find their ideal university based on location, budget, and majors. Our platform simplifies the search process, ensuring you make informed decisions for your future.</p>
+            </div>
+            <div class="about-us-image">
+                <img src="grad3.jpg" alt="About Us Image">
+            </div>
+        </section>
+    </main>
+
+    <div id="login-popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup('login-popup')">&times;</span>
+            <h2>Login</h2>
+            <form action="login.php" method="post">
+                <label for="login-email">Email:</label>
+                <input type="" id="login-email" name="email" placeholder="Enter your email" required>
+                <label for="login-password">Password:</label>
+                <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+                <label>
+                    <input type="checkbox" onclick="togglePassword('login-password')"> Show Password
+                </label>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="signup-popup" class="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup('signup-popup')">&times;</span>
+            <h2>Sign Up</h2>
+            <form onsubmit="return validateSignup()" action="signup.php" method="post">
+                <label for="signup-name">Full Name:</label>
+                <input type="text" id="signup-name" name="name" placeholder="Enter your full name" required>
+                <label for="signup-email">Email:</label>
+                <input type="email" id="signup-email" name="email" placeholder="Enter your email" required>
+                <label for="signup-password">Password:</label>
+                <input type="password" id="signup-password" name="password" placeholder="Enter password" required>
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" placeholder="Confirm-password" required>
+                <label>
+                    <input type="checkbox" onclick="togglePassword('signup-password'); togglePassword('confirm-password')"> Show Password
+                </label>
+                <p id="password-error" style="color: red; display: none;">Passwords do not match!</p>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
