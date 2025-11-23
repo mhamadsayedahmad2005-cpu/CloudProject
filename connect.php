@@ -1,10 +1,17 @@
 <?php
 session_start();
-$host = "localhost";
-$username = "clouduser";
-$password = "StrongPassword123!";
-$database = "isd";
 
+// Database connection settings for AWS EC2 MySQL
+$host = "localhost";               // MySQL runs on the same EC2 server
+$username = "clouduser";           // The user you created in MySQL
+$password = "StrongPassword123!";  // The password you set
+$database = "isd";                 // Your database name
 
-$conn = mysqli_connect($DB_HOST, $DB_USER, $DB_PASS, $DB_NAME);
+// Create connection
+$conn = mysqli_connect($host, $username, $password, $database);
 
+// Check connection
+if (!$conn) {
+    die("Database connection failed: " . mysqli_connect_error());
+}
+?>
