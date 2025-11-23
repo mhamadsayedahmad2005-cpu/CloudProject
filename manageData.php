@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "isd");
+require_once 'connect.php';
 
 // Handle Add Major (Prepared Statement)
 if (isset($_POST['submit_major'])) {

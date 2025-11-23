@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "isd");
+require_once 'connect.php';
 
 if (isset($_POST['logout'])) {
   session_start();
