@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 // Database connection settings for AWS EC2 MySQL
 $host = "localhost";               // MySQL runs on the same EC2 server
