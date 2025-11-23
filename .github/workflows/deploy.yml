@@ -12,6 +12,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # 1) Clean the target directory and ensure ubuntu can write
+      - name: Prepare target directory on EC2
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            sudo rm -rf /var/www/cloudproject/*
+            sudo rm -rf /var/www/cloudproject/.git
+            sudo mkdir -p /var/www/cloudproject
+            sudo chown -R ubuntu:www-data /var/www/cloudproject
+
+      # 2) Copy project files from GitHub runner to EC2
       - name: Copy project to EC2
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -21,12 +35,3 @@ jobs:
           source: "."
           target: "/var/www/cloudproject"
           overwrite: true
-
-      - name: Fix permissions
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            sudo chown -R www-data:www-data /var/www/cloudproject
