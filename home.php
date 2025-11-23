@@ -1,5 +1,5 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "isd");
+$conn = mysqli_connect($host, $username, $password, $database);
 $majors = $conn->query("SELECT Name FROM Major");
 $cities = $conn->query("SELECT Name FROM City");
 if (isset($_POST['logout'])) {
