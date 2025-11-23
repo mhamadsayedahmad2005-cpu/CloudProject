@@ -1,7 +1,19 @@
 <?php
-$conn = mysqli_connect($host, $username, $password, $database);
-$majors = $conn->query("SELECT Name FROM Major");
-$cities = $conn->query("SELECT Name FROM City");
+session_start();
+require_once 'connect.php';  // use the correct DB connection from AWS
+
+// Run queries safely
+$majors = mysqli_query($conn, "SELECT Name FROM Major");
+if (!$majors) {
+    die("Major query failed: " . mysqli_error($conn));
+}
+
+$cities = mysqli_query($conn, "SELECT Name FROM City");
+if (!$cities) {
+    die("City query failed: " . mysqli_error($conn));
+}
+
+// Handle logout
 if (isset($_POST['logout'])) {
     $_SESSION = [];
     session_destroy();
@@ -9,7 +21,6 @@ if (isset($_POST['logout'])) {
     exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -147,7 +158,6 @@ if (isset($_POST['logout'])) {
       font-size: 0.9rem;
     }
 
-    /* Media Queries */
     @media (max-width: 768px) {
       header {
         flex-direction: column;
