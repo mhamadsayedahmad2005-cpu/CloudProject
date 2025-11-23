@@ -3,12 +3,12 @@ session_start();
 require_once 'connect.php';  // use the correct DB connection from AWS
 
 // Run queries safely
-$majors = mysqli_query($conn, "SELECT Name FROM Major");
+$majors = mysqli_query($conn, "SELECT Name FROM major");
 if (!$majors) {
     die("Major query failed: " . mysqli_error($conn));
 }
 
-$cities = mysqli_query($conn, "SELECT Name FROM City");
+$cities = mysqli_query($conn, "SELECT Name FROM city");
 if (!$cities) {
     die("City query failed: " . mysqli_error($conn));
 }
